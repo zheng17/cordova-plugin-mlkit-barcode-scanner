@@ -26,8 +26,7 @@
     "clean": "mkdir -p 'www' && find 'www' ! -path 'www' -delete",
     "lint": "eslint . --ext .js,.ts --cache && tsc -p tsconfig.lint.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "transpile": "rollup --config --silent",
-    "prepublishOnly": "npm run build"
+    "transpile": "rollup --config --silent"
   },
   "files": [
     "/src/",
