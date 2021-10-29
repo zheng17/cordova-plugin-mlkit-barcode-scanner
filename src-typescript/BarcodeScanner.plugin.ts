@@ -12,17 +12,18 @@ export class MLKitBarcodeScanner {
   };
 
   private getBarcodeFormat(format: number): string {
-    getValues(detectorFormat).indexOf(format);
+    getValues(detectorFormat).indexOf(format); // FIXME you shouldn't rely on attribute order in objects
     const index = getValues(detectorFormat).indexOf(format);
     return Object.keys(detectorFormat)[index] || format.toString();
   }
 
   private getBarcodeType(type: number): string {
-    getValues(detectorType).indexOf(type);
+    getValues(detectorType).indexOf(type); // FIXME you shouldn't rely on attribute order in objects
     const index = getValues(detectorType).indexOf(type);
     return Object.keys(detectorType)[index] || type.toString();
   }
 
+  // FIXME please change name to reflect that this number has to be interpreted as a collection of flags
   private getDetectorTypes(): number {
     let detectorTypes = 0;
     let key: keyof typeof detectorFormat;
@@ -41,6 +42,7 @@ export class MLKitBarcodeScanner {
 
   private getSettings(): ISettings {
     // Order of this settings object is critical. It will be passed in a basic array format and must be in the order shown.
+    // FIXME you shouldn't rely on attribute order in objects
     const args = {
       // Position 1
       detectorTypes: this.getDetectorTypes(),
@@ -59,10 +61,12 @@ export class MLKitBarcodeScanner {
   }
 
   scan(
-    userOptions: IOptions,
+    userOptions: IOptions, // FIXME should allow {}
     success: (result: IResult) => unknown,
     failure: (error: IError) => unknown,
   ): void {
+    // FIXME future scans will re-use options from previous scans, if they don't pass in their own options
+    // FIXME in general, this should not be persisted, it should just be a parameter
     this.options = {
       ...this.options,
       ...userOptions,

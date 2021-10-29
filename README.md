@@ -74,6 +74,7 @@ npx cordova plugin add cordova-plugin-mlkit-barcode-scanner
 To use the plugin simply call `cordova.plugins.mlkit.barcodeScanner.scan(options, sucessCallback, failureCallback)`. See the sample below.
 
 ```javascript
+// FIXME example does not match interface - should be like `scan(options, (result) => {/*...*/}, (error) => {/*...*/}`
 cordova.plugins.mlkit.barcodeScanner.scan(options, (error, result) => {
   if (error) {
     // Error handling
@@ -173,3 +174,4 @@ Here is a list of devices with this problem:
 Current Solution:
 if your device has this problem, you can call the plugin with the option `mirrorCamera` set to `true`.
 This will rotate the camera stream by 180 degrees.
+// FIXME "rotate 180" and "mirror" is not the same - which is it? The android code seems to mirror it across both axes
